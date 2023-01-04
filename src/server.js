@@ -53,4 +53,18 @@ app.post("/tasks", (req, res) => {
   res.json(task);
 });
 
+// Update the task by id
+app.patch("/tasks/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const task = tasks.find((item) => item.id === id);
+  task.text = req.body.text;
+  res.json(task);
+});
+// Delete the task by id
+app.delete("/tasks/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const task = tasks.find((item) => item.id === id);
+  tasks.splice(tasks.indexOf(task), 1);
+  res.json(task);
+});
 module.exports = app;
